@@ -13,3 +13,8 @@ This project will make Wikipedia easier to manage and scale with up-to-date info
 - find new source 
 - create_article_for{topic}
 - transforms wiki pages to be more uniform and ingestible
+
+## References
+
+- https://www.twitch.tv/videos/1976418974
+- https://dashboard.cohere.com/
