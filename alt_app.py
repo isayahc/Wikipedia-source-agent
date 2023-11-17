@@ -4,6 +4,7 @@ from langchain import LLMChain
 from langchain import PromptTemplate
 
 from langchain.llms import Cohere
+
 import os
 
 from dotenv import load_dotenv
@@ -23,9 +24,10 @@ Answer: Let's think step by step."""
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
 
-from langchain.llms import Cohere
+
 
 llm_chain = LLMChain(prompt=prompt, llm=llm)
+
 with gr.Blocks() as demo:
     chatbot = gr.Chatbot()
     msg = gr.Textbox()
