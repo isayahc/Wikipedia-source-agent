@@ -19,9 +19,9 @@ def create_UI(llm_chain):
 
         def bot(history):
             print("Question: ", history[-1][0])
-            bot_message = llm_chain(history[-1][0])
+            bot_message = llm_chain.invoke(history[-1][0])
 
-            bot_message = bot_message["text"]
+            bot_message = bot_message
             print("Response: ", bot_message)
             history[-1][1] = ""
             history[-1][1] += bot_message
@@ -35,5 +35,6 @@ def create_UI(llm_chain):
 if __name__ == "__main__":
     demo = create_UI(llm_chain)
     demo.queue()
-    demo.launch()
+    # demo.launch()
+    demo.launch(share=True)
     # pass
