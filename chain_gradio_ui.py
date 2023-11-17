@@ -34,8 +34,6 @@ llm = chat = Cohere(
     cohere_api_key=COHERE_API_KEY,
     )
 
-# tools = load_tools(["wikipedia"], llm=llm)
-# agent = initialize_agent(llm=llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
 
 def langchain_bot(prompt):
     if prompt:
@@ -80,7 +78,7 @@ Your responses should always be one paragraph long or less.
     rag = CohereRagRetriever(llm=chat,)
 
     model = chat
-    # retriever = rag
+
 
     # Build chain
     qa_chain = ConversationalRetrievalChain.from_llm(
