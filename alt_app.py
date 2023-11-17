@@ -37,7 +37,9 @@ with gr.Blocks() as demo:
 
     def bot(history):
         print("Question: ", history[-1][0])
-        bot_message = llm_chain.run(question=history[-1][0])
+        # bot_message = llm_chain(question=history[-1][0])
+        # bot_message = llm_chain({"question": history[-1][0]})
+        bot_message = llm_chain(history[-1][0])
         print("Response: ", bot_message)
         history[-1][1] = ""
         history[-1][1] += bot_message
