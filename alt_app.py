@@ -23,9 +23,6 @@ template = """Question: {question}
 Answer: Let's think step by step."""
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
-
-
-
 llm_chain = LLMChain(prompt=prompt, llm=llm)
 
 with gr.Blocks() as demo:
@@ -39,8 +36,6 @@ with gr.Blocks() as demo:
 
     def bot(history):
         print("Question: ", history[-1][0])
-        # bot_message = llm_chain(question=history[-1][0])
-        # bot_message = llm_chain({"question": history[-1][0]})
         bot_message = llm_chain(history[-1][0])
         print("Response: ", bot_message)
         history[-1][1] = ""
