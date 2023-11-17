@@ -2,7 +2,6 @@ import gradio as gr
 
 from langchain import LLMChain
 from langchain import PromptTemplate
-
 from langchain.llms import Cohere
 
 import os
