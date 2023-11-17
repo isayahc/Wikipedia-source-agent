@@ -1,7 +1,9 @@
 # Wikipedia source agent 🌐🗂️
 
 ## Issue
-links are sometimes irrelevant and may not still be valid, this agent validates references
+- links are sometimes irrelevant and may not still be valid, this agent validates references
+- Biologies on wikipedia are disporportianly men 
+
 
 ## Benefits of Project
 This project will make Wikipedia easier to manage and scale with up-to-date information.
@@ -16,5 +18,6 @@ This project will make Wikipedia easier to manage and scale with up-to-date info
 
 ## References
 
-- https://www.twitch.tv/videos/1976418974
-- https://dashboard.cohere.com/
+1. [Cohere Hackathon Workshop](https://www.twitch.tv/videos/1976418974)
+2. [Cohere Dashboard](https://dashboard.cohere.com/)
+3. [generating-wikipedia-biographies](https://ai.meta.com/blog/generating-wikipedia-biographies/)
