@@ -44,5 +44,7 @@ with gr.Blocks() as demo:
     msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False).then(bot, chatbot, chatbot)
     clear.click(lambda: None, None, chatbot, queue=False)
 
-demo.queue()
-demo.launch()
+
+if __name__ == "__main__":
+    demo.queue()
+    demo.launch()
