@@ -4,6 +4,8 @@ from langchain import LLMChain
 from langchain import PromptTemplate
 from langchain.llms import Cohere
 
+from create_chain import chain as llm_chain
+
 
 
 def create_UI(llm_chain):
@@ -31,4 +33,7 @@ def create_UI(llm_chain):
 
 
 if __name__ == "__main__":
-    pass
+    demo = create_UI(llm_chain)
+    demo.queue()
+    demo.launch()
+    # pass

@@ -98,6 +98,6 @@ chain = (
 
 
 
-if __name__ == "__main__":
-    sample = chain.invoke("Who is Barack Obama?")
-    print(sample)
+# if __name__ == "__main__":
+#     sample = chain.invoke("Who is Barack Obama?")
+#     print(sample)
