@@ -39,6 +39,9 @@ from prompt import wikipedia_template, general_internet_template
 load_dotenv()  # take environment variables from .env. 
 # https://pypi.org/project/python-dotenv/
 
+def format_docs(docs):
+    return "\n\n".join([d.page_content for d in docs])
+
 
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 
@@ -49,14 +52,10 @@ chat = ChatCohere(
 template = wikipedia_template
 prompt = PromptTemplate(template=template, input_variables=["query"])
 
-
 rag = CohereRagRetriever(llm=chat,)
 
 model = chat
 retriever = rag
-
-def format_docs(docs):
-    return "\n\n".join([d.page_content for d in docs])
 
 
 chain = (
