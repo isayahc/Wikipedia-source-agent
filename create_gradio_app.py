@@ -8,9 +8,9 @@ from create_chain import chain as llm_chain
 
 
 examples = [
-    ["The tower is 324 metres (1,063 ft) tall,"],
-    ["The Moon's orbit around Earth has"],
-    ["The smooth Borealis basin in the Northern Hemisphere covers 40%"],
+    ["What is Cellular Automata and who created it?"],
+    ["What is Cohere"],
+    ["who is Katherine Johnson"],
 ]
 
 def create_UI(llm_chain):
