@@ -39,31 +39,11 @@ from prompt import wikipedia_template, general_internet_template
 load_dotenv()  # take environment variables from .env. 
 # https://pypi.org/project/python-dotenv/
 
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+
 def format_docs(docs):
     return "\n\n".join([d.page_content for d in docs])
 
-
-COHERE_API_KEY = os.getenv("COHERE_API_KEY")
-
-chat = ChatCohere(
-    cohere_api_key=COHERE_API_KEY,
-    )
-
-template = wikipedia_template
-prompt = PromptTemplate(template=template, input_variables=["query"])
-
-rag = CohereRagRetriever(llm=chat,)
-
-model = chat
-retriever = rag
-
-
-chain = (
-    {"context": retriever | format_docs, "query": RunnablePassthrough()}
-    | prompt
-    | model
-    | StrOutputParser()
-)
 
 def create_chain_from_template(template, retriever, model):
     prompt = PromptTemplate(template=template, input_variables=["query"])
@@ -77,6 +57,16 @@ def create_chain_from_template(template, retriever, model):
 
 
 
-# if __name__ == "__main__":
-#     sample = chain.invoke("Who is Barack Obama?")
-#     print(sample)
+if __name__ == "__main__":
+    chat = ChatCohere(
+        cohere_api_key=COHERE_API_KEY,
+        )
+
+    template = wikipedia_template
+    prompt = PromptTemplate(template=template, input_variables=["query"])
+
+    rag = CohereRagRetriever(llm=chat,)
+
+    model = chat
+    retriever = rag
+
