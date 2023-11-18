@@ -15,6 +15,9 @@ examples = [
 
 def create_UI(llm_chain):
     with gr.Blocks() as demo:
+        radio = gr.Radio(
+        ["wikipedia only", "any website", "none"], label="What kind of essay would you like to write?"
+    )
         chatbot = gr.Chatbot()
         msg = gr.Textbox()
         clear = gr.Button("Clear")
