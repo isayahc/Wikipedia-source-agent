@@ -29,15 +29,18 @@ examples = [
 
 def create_UI(llm_chain):
     with gr.Blocks() as demo:
+    #     radio = gr.Radio(
+    #     ["wikipedia only", "any website", "none"], label="What kind of essay would you like to write?", value="wikipedia only"
+    # )
         radio = gr.Radio(
-        ["wikipedia only", "any website", "none"], label="What kind of essay would you like to write?"
+        ["wikipedia only", "any website", ], label="What kind of essay would you like to write?", value="wikipedia only"
     )
 
         
         chatbot = gr.Chatbot()
-        msg = gr.Textbox()
+        msg = gr.Textbox(info="Enter your question here, press enter to submit query")
         clear = gr.Button("Clear")
-        submit_btn = gr.Button("Submit", variant="primary")
+        # submit_btn = gr.Button("Submit", variant="primary")
 
         gr.Examples(examples=examples, label="Examples", inputs=msg,)
         
@@ -73,12 +76,14 @@ def create_UI(llm_chain):
                     )
                 return llm_chain
             elif choice == "none":
-                return gr.Textbox(lines=8, visible=True, value="Lorem ipsum dolor sit amet"), gr.Button(interactive=True)
+                submit_btn = gr.Button("Submit", variant="primary")
+                return gr.Textbox(lines=8, visible=True, value="Lorem ipsum dolor sit amet"), gr.Button("Submit", variant="primary")
             else:
                 return gr.Textbox(visible=False), gr.Button(interactive=False)
 
         text = gr.Textbox(lines=2, interactive=True, show_copy_button=True)
-        radio.change(fn=change_textbox, inputs=radio, outputs=[text, submit_btn])
+        # radio.change(fn=change_textbox, inputs=radio, outputs=[text, submit_btn])
+        radio.change(fn=change_textbox, inputs=radio, outputs=[text])
         msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False).then(bot, chatbot, chatbot)
         clear.click(lambda: None, None, chatbot, queue=False)
     return demo

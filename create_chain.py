@@ -15,7 +15,6 @@ from langchain.retrievers import CohereRagRetriever
 from langchain.schema.document import Document
 
 from langchain.chains import LLMChain
-from langchain.llms import Cohere
 from langchain.prompts import PromptTemplate
 
 
@@ -24,7 +23,6 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.schema import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough
 
-# from langchain.chat_models import SystemMessagePromptTemplate
 
 from langchain.prompts import (
 ChatPromptTemplate,
@@ -76,6 +74,7 @@ if __name__ == "__main__":
         )
     
     sample_query = "What is Cellular Automata and who created it?"
-    llm_chain.invoke(sample_query)
+    sample_output = llm_chain.invoke(sample_query)
+    print(sample_output)
 
 

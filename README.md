@@ -1,3 +1,9 @@
+---
+title: Wikipedia-source-agent
+app_file: create_gradio_app.py
+sdk: gradio
+sdk_version: 4.4.0
+---
 # Wikipedia source agent 🌐🗂️
 
 ## Issue
