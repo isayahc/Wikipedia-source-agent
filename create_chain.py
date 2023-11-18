@@ -65,6 +65,16 @@ chain = (
     | StrOutputParser()
 )
 
+def create_chain_from_template(template, retriever, model):
+    prompt = PromptTemplate(template=template, input_variables=["query"])
+    chain = (
+        {"context": retriever | format_docs, "query": RunnablePassthrough()}
+        | prompt
+        | model
+        | StrOutputParser()
+    )
+    return chain
+
 
 
 # if __name__ == "__main__":
