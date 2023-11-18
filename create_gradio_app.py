@@ -13,6 +13,14 @@ examples = [
     ["who is Katherine Johnson"],
 ]
 
+def change_textbox(choice):
+    if choice == "short":
+        return gr.Textbox(lines=2, visible=True), gr.Button(interactive=True)
+    elif choice == "long":
+        return gr.Textbox(lines=8, visible=True, value="Lorem ipsum dolor sit amet"), gr.Button(interactive=True)
+    else:
+        return gr.Textbox(visible=False), gr.Button(interactive=False)
+
 def create_UI(llm_chain):
     with gr.Blocks() as demo:
         radio = gr.Radio(
@@ -21,8 +29,21 @@ def create_UI(llm_chain):
         chatbot = gr.Chatbot()
         msg = gr.Textbox()
         clear = gr.Button("Clear")
+        submit_btn = gr.Button("Submit", variant="primary")
+        
         # gr.Examples(examples=examples, label="Examples", inputs=gr.Textbox(lines=5, max_lines=6, label=chatbot),)
         gr.Examples(examples=examples, label="Examples", inputs=msg,)
+
+        def change_textbox(choice):
+            if choice == "wikipedia only":
+                return gr.Textbox(lines=2, visible=True), gr.Button(interactive=True)
+            elif choice == "any website":
+                return gr.Textbox(lines=8, visible=True, value="Lorem ipsum dolor sit amet"), gr.Button(interactive=True)
+            elif choice == "none":
+                return gr.Textbox(lines=8, visible=True, value="Lorem ipsum dolor sit amet"), gr.Button(interactive=True)
+            else:
+                return gr.Textbox(visible=False), gr.Button(interactive=False)
+
 
         def user(user_message, history):
             return "", history + [[user_message, None]]
@@ -37,8 +58,25 @@ def create_UI(llm_chain):
             history[-1][1] += bot_message
             return history
 
+        text = gr.Textbox(lines=2, interactive=True, show_copy_button=True)
+        radio.change(fn=change_textbox, inputs=radio, outputs=[text, submit_btn])
         msg.submit(user, [msg, chatbot], [msg, chatbot], queue=False).then(bot, chatbot, chatbot)
         clear.click(lambda: None, None, chatbot, queue=False)
+
+    #     radio = gr.Radio(
+    #     ["short", "long", "none"], label="What kind of essay would you like to write?"
+    # )
+        
+    
+    
+    
+    
+    # gr.on(
+    #     [minimum_slider.change, maximum_slider.change],
+    #     reset_bounds,
+    #     [minimum_slider, maximum_slider],
+    #     outputs=num,
+    # )
     return demo
 
 
