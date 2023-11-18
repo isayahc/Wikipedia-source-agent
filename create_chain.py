@@ -58,15 +58,24 @@ def create_chain_from_template(template, retriever, model):
 
 
 if __name__ == "__main__":
-    chat = ChatCohere(
+
+
+    llm_model = ChatCohere(
         cohere_api_key=COHERE_API_KEY,
         )
 
     template = wikipedia_template
     prompt = PromptTemplate(template=template, input_variables=["query"])
 
-    rag = CohereRagRetriever(llm=chat,)
+    rag = CohereRagRetriever(llm=llm_model,)
 
-    model = chat
-    retriever = rag
+    llm_chain = create_chain_from_template(
+        template, 
+        rag, 
+        llm_model
+        )
+    
+    sample_query = "What is Cellular Automata and who created it?"
+    llm_chain.invoke(sample_query)
+
 
